@@ -1,6 +1,7 @@
 name: ci
 
 on:
+  workflow_dispatch:
   push:
     paths-ignore:
       - 'docs/**'
@@ -23,6 +24,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Garnet Runtime Visibility
+        uses: garnet-org/action@v2
+        with:
+          api_token: ${{ secrets.GARNET_API_TOKEN }}
 
       - name: Use Node.js
         uses: actions/setup-node@v2.1.4
